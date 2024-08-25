@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\event_category;
+use App\Models\category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class EventCategorySeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,7 +19,7 @@ class EventCategorySeeder extends Seeder
             'Bowling 🎳', 'Cinéma 🎬', 'Pool party 🏊', 'Restaurant 🍽️', 'Apero Party 🍹',
         ]);
 
-        $category->map(fn($category) => event_category::create([
+        $category->map(fn($category) => category::create([
             'name' => $category,
             'slug' => Str::slug($category),
             'image_url' => url('/images/Categories/' . Str::slug($category) . '.jpg'),

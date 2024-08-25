@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\event_tag;
+use App\Models\tag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class EventTagSeeder extends Seeder
+class TagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class EventTagSeeder extends Seeder
     public function run(): void
     {
         $tag = collect(['En cours', 'Terminé', 'Supprimé', 'Fermé']);
-        $tag->map(fn($tag) => event_tag::create([
+        $tag->map(fn($tag) => tag::create([
             'name' => $tag,
         ]));
     }
