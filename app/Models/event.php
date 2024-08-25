@@ -13,12 +13,12 @@ class event extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(event_category::class, 'event_category_id');
+        return $this->belongsTo(event_category::class);
     }
 
     public function tag(): BelongsTo
     {
-        return $this->belongsTo(event_tag::class, 'event_tag_id');
+        return $this->belongsTo(event_tag::class);
     }
 
     public function creator(): BelongsTo
