@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\event;
-use App\Models\event_category;
-use App\Models\event_tag;
+use App\Models\category;
+use App\Models\tag;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,8 +16,8 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = event_category::where('id', '!=', 1)->get();
-        $tags = event_tag::all();
+        $categories = category::where('id', '!=', 1)->get();
+        $tags = tag::all();
         $users = User::all();
 
         Event::factory()
@@ -25,8 +25,8 @@ class EventSeeder extends Seeder
             ->sequence(function () use ($categories, $tags, $users) {
                 $category = $categories->random();
                 return [
-                    'event_category_id' => $category->id,
-                    'event_tag_id' => $tags->random()->id,
+                    'category_id' => $category->id,
+                    'tag_id' => $tags->random()->id,
                     'creator_id' => $users->random()->id,
 //                    'picture' => $category->image_url,
                 ];

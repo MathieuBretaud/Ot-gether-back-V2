@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\event_category;
-use App\Models\event_tag;
+use App\Models\category;
+use App\Models\tag;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(event_category::class)->constrained();
-            $table->foreignIdFor(event_tag::class)->constrained();
+            $table->foreignIdFor(category::class)->constrained();
+            $table->foreignIdFor(tag::class)->constrained();
             $table->foreignId('creator_id')->references('id')->on('users');
 //            $table->string('slug');
 //            $table->string('picture');
