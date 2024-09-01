@@ -25,7 +25,7 @@ class EventFactory extends Factory
 
         return [
             'title' => $title,
-            'description' => fake()->sentence(rand(10, 20)),
+            'description' => fake()->sentence(10),
             'address' => fake('fr_FR')->address(),
             'city' => fake('fr_FR')->city(),
             'region' => fake('fr_FR')->region(),
