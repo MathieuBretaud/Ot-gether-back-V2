@@ -22,7 +22,7 @@ class CategorySeeder extends Seeder
         $category->map(fn($category) => category::create([
             'name' => $category,
             'slug' => Str::slug($category),
-            'image_url' => url('/images/Categories/' . Str::slug($category) . '.jpg'),
+            'image_url' => '/images/Categories/' . Str::slug($category) . '.jpg',
         ]));
     }
 }
