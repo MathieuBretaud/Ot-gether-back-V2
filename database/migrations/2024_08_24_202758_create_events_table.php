@@ -38,6 +38,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('event_user');
         Schema::dropIfExists('events');
+        Schema::enableForeignKeyConstraints();
     }
 };
