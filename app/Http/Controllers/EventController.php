@@ -15,6 +15,7 @@ class EventController extends Controller
     public function last(): JsonResponse
     {
         $eventsLast = Event::with('category')
+            ->with('participants')
             ->orderBy('created_at', 'desc')
             ->limit(4)->get();
 
