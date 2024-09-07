@@ -9,3 +9,4 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::get('/events/last', [EventController::class, 'last'])->name('events.last');
+Route::apiResource('/events', EventController::class);
