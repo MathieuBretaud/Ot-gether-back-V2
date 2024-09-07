@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EventResource;
 use App\Models\event;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,22 +13,29 @@ class EventController extends Controller
     /**
      * Display last Event.
      */
-    public function last(): JsonResponse
+    public function last(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $eventsLast = Event::with('category')
-            ->with('participants')
-            ->orderBy('created_at', 'desc')
+            ->withCount('participants')
+            ->latest()
             ->limit(4)->get();
 
-        return response()->json($eventsLast);
+//        return response()->json($eventsLast);
+        return EventResource::collection($eventsLast);
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        //
+        $events = Event::with('category')
+            ->withCount('participants')
+            ->latest()
+            ->paginate(8);
+
+//        return response()->json($events);
+        return EventResource::collection($events);
     }
 
     /**
