@@ -19,7 +19,7 @@ class EventResource extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'participant_max' =>$this->participant_max,
-            'participants_count'=> $this->participants_count,
+            'participants_count'=> $this->participants_count ?? 0,
             'category' => $this->category->name,
             'image_url' => $this->category->image_url,
             'start_date' => $this->start_date
