@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->foreignIdFor(category::class)->constrained();
             $table->foreignIdFor(tag::class)->constrained();
             $table->foreignId('creator_id')->references('id')->on('users');
-//            $table->string('slug');
+            $table->string('slug');
 //            $table->string('picture');
             $table->string('title');
             $table->string('description');

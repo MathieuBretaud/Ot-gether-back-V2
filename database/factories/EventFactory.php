@@ -30,7 +30,7 @@ class EventFactory extends Factory
             'city' => fake('fr_FR')->city(),
             'region' => fake('fr_FR')->region(),
             'is_IRL' => fake()->boolean(10),
-//            'slug' => Str::slug($title),
+            'slug' => Str::slug($title),
 //            'participant_min' => rand(1, 10),
             'participant_max' => rand(11, 25),
             'start_date' => $startDate,
