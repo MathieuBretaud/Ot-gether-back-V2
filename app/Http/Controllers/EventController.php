@@ -49,9 +49,9 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(event $event)
+    public function show(event $event): EventResource
     {
-        //
+        return new EventResource($event);
     }
 
     /**

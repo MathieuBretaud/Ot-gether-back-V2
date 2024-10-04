@@ -17,12 +17,18 @@ class EventResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'slug' => $this->slug,
+            'creator' => $this->creator->pseudo,
             'description' => $this->description,
             'participant_max' =>$this->participant_max,
-            'participants_count'=> $this->participants_count,
+            'participants_count'=> $this->participants_count ?? 0,
             'category' => $this->category->name,
             'image_url' => $this->category->image_url,
-            'start_date' => $this->start_date
+            'start_date' => $this->start_date,
+            'tag' => $this->tag->name,
+            'is_IRL' => $this->is_IRL,
+            'city' => $this->city ?? '',
+            'region' => $this->region ?? ''
         ];
     }
 }
