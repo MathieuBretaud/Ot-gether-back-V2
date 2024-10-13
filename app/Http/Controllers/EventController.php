@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
 use App\Models\event;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class EventController extends Controller
 {
@@ -41,9 +44,11 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EventRequest $request): JsonResponse
     {
-        //
+        $validatedData = $request->validated();
+        $newEvent = Event::create($validatedData);
+        return response()->json($newEvent, Response::HTTP_CREATED);
     }
 
     /**

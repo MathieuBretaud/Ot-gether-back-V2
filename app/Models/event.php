@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Str;
 
 /**
  * @mixin IdeHelperevent
@@ -13,6 +14,29 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class event extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'category_id',
+        'tag_id',
+        'creator_id',
+        'title',
+        'description',
+        'address',
+        'city',
+        'region',
+        'is_IRL',
+        'participant_max',
+        'start_date'
+    ];
+
+    protected static function booted(): void
+    {
+        static::saving(function ($event) {
+            if (empty($event->slug)) {
+                $event->slug = Str::slug($event->title);
+            }
+        });
+    }
 
     public function category(): BelongsTo
     {
