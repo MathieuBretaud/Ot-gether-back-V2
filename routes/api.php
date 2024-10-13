@@ -9,4 +9,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::get('/events/last', [EventController::class, 'last'])->name('events.last');
-Route::apiResource('/events', EventController::class);
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/events', [EventController::class, 'store']);
+});
