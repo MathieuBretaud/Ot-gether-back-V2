@@ -30,9 +30,19 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
+        $search = $request->get('search');
+        $category = $request->get('category');
         $events = Event::with('category')
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($q) use ($search) {
+                    $q->where('title', 'like', "%$search%");
+                });
+            })
+            ->when($category, function ($query, $category) {
+                return $query->where('category_id', '=', $category);
+            })
             ->withCount('participants')
             ->latest()
             ->paginate(8);
